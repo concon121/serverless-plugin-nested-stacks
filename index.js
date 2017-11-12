@@ -22,8 +22,6 @@ class AWSNestedStacks {
             'before:aws:deploy:deploy:updateStack': () => BbPromise.bind(this)
         .then(self.setBucketName)
         .then(self.uploadNestedTemplates)
-      // 'before:deploy:*': self.start(),
-      // 'before:config:*': self.start()
         }
     }
 
