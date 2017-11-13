@@ -20,8 +20,8 @@ class AWSNestedStacks {
         this.hooks = {
             'before:package:finalize': self.createNestedStackCfn,
             'before:aws:deploy:deploy:updateStack': () => BbPromise.bind(this)
-        .then(self.setBucketName)
-        .then(self.uploadNestedTemplates)
+                .then(self.setBucketName)
+                .then(self.uploadNestedTemplates)
         }
     }
 
@@ -29,8 +29,8 @@ class AWSNestedStacks {
         var baseUrl
         const service = ref.self.serverless.service.service
         const stage = ref.self.options.stage
-        if (ref.self.provider.deploymentBucket) {
-            baseUrl = 'https://s3.amazonaws.com/' + ref.self.provider.deploymentBucket + `/serverless/${service}/${stage}`
+        if (ref.self.serverless.service.provider.deploymentBucket) {
+            baseUrl = 'https://s3.amazonaws.com/' + ref.self.serverless.service.provider.deploymentBucket + `/serverless/${service}/${stage}`
         } else {
             baseUrl = {
                 'Fn::Sub': 'https://s3.amazonaws.com/${ServerlessDeploymentBucket}' + `/serverless/${service}/${stage}`
