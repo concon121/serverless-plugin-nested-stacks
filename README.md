@@ -1,6 +1,16 @@
 # serverless-plugin-nested-stacks
+[![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 
 Nested stacks for the Serverless Framework!
+
+## Intro
+
+Write your nested stacks as regular cloudformation and easily integrate them with the Serverless Framework!  
+
+This plugin handles:
+
+* Adding the appropriate **AWS::Cloudformation::Stack** type resources to the generated sls cloudformation template.
+* Uploading your nested stacks to your designated S3 deployment bucket.
 
 ## Configuration Reference
 
