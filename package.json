@@ -1,55 +1,55 @@
 {
-  "name": "serverless-aws-nested-stacks",
-  "main": "index",
-  "version": "0.0.1",
-  "description": "Serverless plugin to easily set up AWS cloudformation nested stacks!",
-  "keywords": [
-    "serverless",
-    "node",
-    "aws"
-  ],
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/concon121/serverless-plugin-nested-stacks"
-  },
-  "engines": {
-    "node": ">=4.0"
-  },
-  "license": "MIT",
-  "dependencies": {
-    "aws-sdk": "^2.149.0",
-    "bluebird": "^3.0.6",
-    "lodash": "^4.17.4"
-  },
-  "devDependencies": {
-    "codeclimate-test-reporter": "^0.4.1",
-    "eslint": "^3.19.0",
-    "eslint-config-standard": "^10.2.0",
-    "eslint-plugin-import": "^2.2.0",
-    "eslint-plugin-node": "^4.2.2",
-    "eslint-plugin-promise": "^3.5.0",
-    "eslint-plugin-standard": "^3.0.1",
-    "istanbul": "^1.0.0-alpha.2",
-    "jasmine": "^2.5.2",
-    "jasmine-focused": "^1.0.7",
-    "jshint": "^2.9.4"
-  },
-  "scripts": {
-    "test": "node ./node_modules/jasmine-focused/bin/jasmine-focused spec",
-    "coverage": "node ./node_modules/istanbul/lib/cli.js cover -v --include-all-sources node_modules/jasmine-focused/bin/jasmine-focused -R spec",
-    "jshint": "node ./node_modules/jshint/bin/jshint *.js",
-    "es": "node ./node_modules/eslint/bin/eslint *.js",
-    "quality": "npm run jshint && npm run es"
-  },
-  "standard": {
-    "globals": [
-      "beforeEach",
-      "describe",
-      "expect",
-      "it",
-      "module",
-      "require",
-      "spyOn"
-    ]
-  }
+    "name": "serverless-aws-nested-stacks",
+    "main": "index",
+    "version": "0.0.2",
+    "description": "Serverless plugin to easily set up AWS cloudformation nested stacks!",
+    "keywords": [
+        "serverless",
+        "node",
+        "aws"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/concon121/serverless-plugin-nested-stacks"
+    },
+    "engines": {
+        "node": ">=4.0"
+    },
+    "license": "MIT",
+    "dependencies": {
+        "aws-sdk": "^2.149.0",
+        "bluebird": "^3.0.6",
+        "lodash": "^4.17.4"
+    },
+    "devDependencies": {
+        "codeclimate-test-reporter": "^0.4.1",
+        "eslint": "^3.19.0",
+        "eslint-config-standard": "^10.2.0",
+        "eslint-plugin-import": "^2.2.0",
+        "eslint-plugin-node": "^4.2.2",
+        "eslint-plugin-promise": "^3.5.0",
+        "eslint-plugin-standard": "^3.0.1",
+        "istanbul": "^1.0.0-alpha.2",
+        "jasmine": "^2.5.2",
+        "jasmine-focused": "^1.0.7",
+        "jshint": "^2.9.4"
+    },
+    "scripts": {
+        "test": "node ./node_modules/jasmine-focused/bin/jasmine-focused spec",
+        "coverage": "node ./node_modules/istanbul/lib/cli.js cover -v --include-all-sources node_modules/jasmine-focused/bin/jasmine-focused -R spec",
+        "jshint": "node ./node_modules/jshint/bin/jshint *.js",
+        "es": "node ./node_modules/eslint/bin/eslint *.js",
+        "quality": "npm run jshint && npm run es"
+    },
+    "standard": {
+        "globals": [
+            "beforeEach",
+            "describe",
+            "expect",
+            "it",
+            "module",
+            "require",
+            "spyOn"
+        ]
+    }
 }
