@@ -3,6 +3,11 @@
 
 Nested stacks for the Serverless Framework!
 
+# Installation
+Run `npm install` in your Serverless project.
+
+    $ npm install serverless-aws-nested-stacks --save-dev
+
 ## Intro
 
 Write your nested stacks as regular cloudformation and easily integrate them with the Serverless Framework!  
