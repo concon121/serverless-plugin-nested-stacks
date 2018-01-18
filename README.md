@@ -21,6 +21,7 @@ custom:
     stacks:
       - id: MyGroovyNestedStack                  # Logical ID (Required)
         template: nested-template.yml            # Template file name (Required)
+        enabled: true                            # optional flag for enabled/disabling substack
         timeout: 60                              # Minutes before stack creation times out.
         parameters:                              # Stack parameters as key value pairs
           - InstanceType: t1.micro
