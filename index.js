@@ -84,6 +84,12 @@ class AWSNestedStacks {
             let resources = ref.self.serverless.service.provider.compiledCloudFormationTemplate.Resources
             for (let stack of stacks) {
                 if (stack && stack.id && stack.template) {
+
+                    // if this stack is disabled, skip it
+                    if(stack.enabled == false) {
+                        continue
+                    }
+
                     ref.self.serverlessLog('Stack: ' + stack.template)
                     resources[stack.id] = {
                         'Type': 'AWS::CloudFormation::Stack',
