@@ -80,7 +80,6 @@ class AWSNestedStacks {
         ref.self.serverlessLog('Creating nested stacks in Cloudformation...')
         let stacks = ref.self.serverless.service.custom['nested-stacks'].stacks
         if (stacks) {
-            const baseUrl = ref.self.getBaseUrl()
             let resources = ref.self.serverless.service.provider.compiledCloudFormationTemplate.Resources
             for (let stack of stacks) {
                 if (stack && stack.id && stack.template) {
@@ -94,7 +93,7 @@ class AWSNestedStacks {
                     resources[stack.id] = {
                         'Type': 'AWS::CloudFormation::Stack',
                         'Properties': {
-                            'TemplateURL': ref.self.getTemplateUrl(baseUrl, stack)
+                            'TemplateURL': ref.self.getTemplateUrl(ref.self.getBaseUrl(), stack)
                         }
                     }
                     if (stack.notifications) {
