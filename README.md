@@ -3,7 +3,7 @@
 
 Nested stacks for the Serverless Framework!
 
-# Installation
+## Installation
 Run `npm install` in your Serverless project.
 
     $ npm install serverless-aws-nested-stacks --save-dev
