@@ -1,5 +1,6 @@
 # serverless-plugin-nested-stacks
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
+[![npm](https://img.shields.io/npm/v/serverless-aws-nested-stacks.svg)](https://www.npmjs.com/package/serverless-aws-nested-stacks)
 
 Nested stacks for the Serverless Framework!
 
