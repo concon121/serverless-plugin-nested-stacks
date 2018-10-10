@@ -20,6 +20,9 @@ This plugin handles:
 ## Configuration Reference
 
 ```
+plugins:
+  - serverless-aws-nested-stacks
+
 custom:
   nested-stacks:
     location: nested-stacks                      # Where do you keep your nested stacks?
