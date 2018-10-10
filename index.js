@@ -127,7 +127,7 @@ class AWSNestedStacks {
         const self = this
         let templateFolder = ref.self.serverless.service.custom['nested-stacks'].location || '.'
         let stacks = ref.self.serverless.service.custom['nested-stacks'].stacks
-        for (let stack of stacks) {
+        return BbPromise.map(stacks, stack => {
             ref.self.serverlessLog('Stack: ' + stack.template)
             let body = fs.readFileSync(path.join(templateFolder, stack.template), 'utf8')
             let params = {
@@ -136,8 +136,8 @@ class AWSNestedStacks {
                 Body: body,
                 ContentType: 'application/json'
             }
-            ref.self.provider.request('S3', 'putObject', params, ref.self.options.stage, ref.self.options.region)
-        }
+             return ref.self.provider.request('S3', 'putObject', params, ref.self.options.stage, ref.self.options.region)
+        })
     }
 }
 module.exports = AWSNestedStacks
