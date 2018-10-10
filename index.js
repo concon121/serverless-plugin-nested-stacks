@@ -51,7 +51,7 @@ class AWSNestedStacks {
     }
 
     mergeArray(array) {
-        const tagObj = {}
+        let tagObj = {}
         if (Array.isArray(array)) {
             for (const item of array) {
                 Object.assign(tagObj, item)
@@ -85,7 +85,7 @@ class AWSNestedStacks {
                 if (stack && stack.id && stack.template) {
 
                     // if this stack is disabled, skip it
-                    if(stack.enabled == false) {
+                    if(stack.enabled === false) {
                         continue
                     }
 
@@ -111,9 +111,9 @@ class AWSNestedStacks {
                         resources[stack.id].Properties.TimeoutInMinutes = stack.timeout
                     }
                 } else {
-                    const msg = ('Missing required properties for nested stack:\n'
-                                 + '\tid - Logical ID of the nested stack\n'
-                                 + '\ttemplate - the name of the nested cloudformation templates')
+                    const msg = ('Missing required properties for nested stack:\n' +
+                                 '\tid - Logical ID of the nested stack\n' +
+                                 '\ttemplate - the name of the nested cloudformation templates')
                     throw new Error(msg)
                 }
             }
