@@ -26,7 +26,7 @@ class AWSNestedStacks {
     }
 
     getBaseUrl() {
-        var baseUrl
+        let baseUrl
         const service = ref.self.serverless.service.service
         const stage = ref.self.options.stage
         if (ref.self.serverless.service.provider.deploymentBucket) {
@@ -40,7 +40,7 @@ class AWSNestedStacks {
     }
 
     getTemplateUrl(baseUrl, stack) {
-        var templateUrl
+        let templateUrl
         if (typeof baseUrl === 'object') {
             templateUrl = baseUrl
             templateUrl['Fn::Sub'] += `/${stack.template}`
@@ -51,9 +51,9 @@ class AWSNestedStacks {
     }
 
     mergeArray(array) {
-        let tagObj = {}
+        const tagObj = {}
         if (Array.isArray(array)) {
-            for (let item of array) {
+            for (const item of array) {
                 Object.assign(tagObj, item)
             }
         } else {
@@ -63,11 +63,11 @@ class AWSNestedStacks {
     }
 
     generateTags(stack) {
-        let tags = []
+        const tags = []
         stack.tags = ref.self.mergeArray(stack.tags)
-        for (let property in stack.tags) {
+        for (const property in stack.tags) {
             if (stack.tags.hasOwnProperty(property)) {
-                let newTag = {}
+                const newTag = {}
                 newTag.Key = property
                 newTag.Value = stack.tags[property]
                 tags.push(newTag)
@@ -78,10 +78,10 @@ class AWSNestedStacks {
 
     createNestedStackCfn() {
         ref.self.serverlessLog('Creating nested stacks in Cloudformation...')
-        let stacks = ref.self.serverless.service.custom['nested-stacks'].stacks
+        const stacks = ref.self.serverless.service.custom['nested-stacks'].stacks
         if (stacks) {
-            let resources = ref.self.serverless.service.provider.compiledCloudFormationTemplate.Resources
-            for (let stack of stacks) {
+            const resources = ref.self.serverless.service.provider.compiledCloudFormationTemplate.Resources
+            for (const stack of stacks) {
                 if (stack && stack.id && stack.template) {
 
                     // if this stack is disabled, skip it
@@ -100,20 +100,20 @@ class AWSNestedStacks {
                         resources[stack.id].Properties.NotificationARNs = stack.notifications
                     }
                     if (stack.parameters) {
-                        let params = ref.self.mergeArray(stack.parameters)
+                        const params = ref.self.mergeArray(stack.parameters)
                         resources[stack.id].Properties.Parameters = params
                     }
                     if (stack.tags) {
-                        let tags = ref.self.generateTags(stack)
+                        const tags = ref.self.generateTags(stack)
                         resources[stack.id].Properties.Tags = tags
                     }
                     if (stack.timeout) {
                         resources[stack.id].Properties.TimeoutInMinutes = stack.timeout
                     }
                 } else {
-                    var msg = 'Missing required properties for nested stack:\n'
-                    msg += '\tid - Logical ID of the nested stack\n'
-                    msg += '\ttemplate - the name of the nested cloudformation templates'
+                    const msg = ('Missing required properties for nested stack:\n'
+                                 + '\tid - Logical ID of the nested stack\n'
+                                 + '\ttemplate - the name of the nested cloudformation templates')
                     throw new Error(msg)
                 }
             }
@@ -125,12 +125,12 @@ class AWSNestedStacks {
         const service = ref.self.serverless.service.service
         const stage = ref.self.options.stage
         const self = this
-        let templateFolder = ref.self.serverless.service.custom['nested-stacks'].location || '.'
-        let stacks = ref.self.serverless.service.custom['nested-stacks'].stacks
+        const templateFolder = ref.self.serverless.service.custom['nested-stacks'].location || '.'
+        const stacks = ref.self.serverless.service.custom['nested-stacks'].stacks
         return BbPromise.map(stacks, stack => {
             ref.self.serverlessLog('Stack: ' + stack.template)
-            let body = fs.readFileSync(path.join(templateFolder, stack.template), 'utf8')
-            let params = {
+            const body = fs.readFileSync(path.join(templateFolder, stack.template), 'utf8')
+            const params = {
                 Bucket: self.bucketName,
                 Key: `serverless/${service}/${stage}/${stack.template}`,
                 Body: body,
