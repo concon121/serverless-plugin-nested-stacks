@@ -3,7 +3,7 @@
 const BbPromise = require('bluebird')
 const fs = require('fs')
 const path = require('path')
-const setBucketName = require('serverless/lib/plugins/aws/lib/setBucketName')
+// const setBucketName = require('serverless/lib/plugins/aws/lib/setBucketName')
 const ref = {}
 
 class AWSNestedStacks {
@@ -15,7 +15,7 @@ class AWSNestedStacks {
         this.serverlessLog = serverless.cli.log.bind(serverless.cli)
         this.options = options
         this.provider = this.serverless.getProvider('aws')
-        Object.assign(self, setBucketName)
+        // Object.assign(self, setBucketName)
 
         this.hooks = {
             'before:package:finalize': self.createNestedStackCfn,
@@ -25,15 +25,25 @@ class AWSNestedStacks {
         }
     }
 
+    setBucketName() {
+        if (ref.self.bucketName) {
+          return BbPromise.resolve(ref.self.bucketName);
+        }
+
+        return ref.self.provider.getServerlessDeploymentBucketName()
+          .then((bucketName) => {
+            ref.self.bucketName = bucketName;
+          });
+    }
+
     getBaseUrl() {
         let baseUrl
-        const service = ref.self.serverless.service.service
-        const stage = ref.self.options.stage
+        const directoryName = ref.self.serverless.service.package.artifactDirectoryName;
         if (ref.self.serverless.service.provider.deploymentBucket) {
-            baseUrl = 'https://s3.amazonaws.com/' + ref.self.serverless.service.provider.deploymentBucket + `/serverless/${service}/${stage}`
+            baseUrl = 'https://s3.amazonaws.com/' + ref.self.serverless.service.provider.deploymentBucket + `/${directoryName}`
         } else {
             baseUrl = {
-                'Fn::Sub': 'https://s3.amazonaws.com/${ServerlessDeploymentBucket}' + `/serverless/${service}/${stage}`
+                'Fn::Sub': 'https://s3.amazonaws.com/${ServerlessDeploymentBucket}' + `/${directoryName}`
             }
         }
         return baseUrl
@@ -122,17 +132,16 @@ class AWSNestedStacks {
 
     uploadNestedTemplates() {
         ref.self.serverlessLog('Uploading nested stacks to S3...')
-        const service = ref.self.serverless.service.service
-        const stage = ref.self.options.stage
         const self = this
         const templateFolder = ref.self.serverless.service.custom['nested-stacks'].location || '.'
+        const directoryName = ref.self.serverless.service.package.artifactDirectoryName;
         const stacks = ref.self.serverless.service.custom['nested-stacks'].stacks
         return BbPromise.map(stacks, stack => {
             ref.self.serverlessLog('Stack: ' + stack.template)
             const body = fs.readFileSync(path.join(templateFolder, stack.template), 'utf8')
             const params = {
                 Bucket: self.bucketName,
-                Key: `serverless/${service}/${stage}/${stack.template}`,
+                Key: `${directoryName}/${stack.template}`,
                 Body: body,
                 ContentType: 'application/json'
             }
