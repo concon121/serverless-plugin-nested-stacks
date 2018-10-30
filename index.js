@@ -3,7 +3,6 @@
 const BbPromise = require('bluebird')
 const fs = require('fs')
 const path = require('path')
-// const setBucketName = require('serverless/lib/plugins/aws/lib/setBucketName')
 const ref = {}
 
 class AWSNestedStacks {
@@ -15,7 +14,6 @@ class AWSNestedStacks {
         this.serverlessLog = serverless.cli.log.bind(serverless.cli)
         this.options = options
         this.provider = this.serverless.getProvider('aws')
-        // Object.assign(self, setBucketName)
 
         this.hooks = {
             'before:package:finalize': self.createNestedStackCfn,
