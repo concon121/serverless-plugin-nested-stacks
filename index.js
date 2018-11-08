@@ -135,7 +135,7 @@ class AWSNestedStacks {
                 Body: body,
                 ContentType: 'application/json'
             }
-             return ref.self.provider.request('S3', 'putObject', params, ref.self.options.stage, ref.self.options.region)
+            return ref.self.provider.request('S3', 'putObject', params, ref.self.options.stage, ref.self.options.region)
         })
     }
 }
