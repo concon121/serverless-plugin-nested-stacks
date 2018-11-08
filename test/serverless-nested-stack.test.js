@@ -22,12 +22,38 @@ test('I can create a AWS nestedStack', t => {
     t.is(plugin.options, options)
 })
 
+test('Get template url when baseUrl is a string', t => {
+    const serverless = setUpServerless()
+    const plugin = new AWSNestedStacks(serverless, options)
+
+    const baseUrl = "https://athing.com/stacks"
+    const stack = {
+        template: "atemplate.yaml"
+    }
+    let templateUrl = plugin.getTemplateUrl(baseUrl, stack)
+    t.is(templateUrl, `${baseUrl}/${stack.template}`)
+})
+
+test('Get template url when baseUrl is an object', t => {
+    const serverless = setUpServerless()
+    const plugin = new AWSNestedStacks(serverless, options)
+    const url = 'https://athing.com/stacks'
+    const baseUrl = {
+        'Fn::Sub': url
+    }
+    const stack = {
+        template: "atemplate.yaml"
+    }
+    let templateUrl = plugin.getTemplateUrl(baseUrl, stack)
+    t.is(templateUrl['Fn::Sub'], `${url}/${stack.template}`)
+})
+
 test('Bucket name is set from self', async t => {
     const serverless = setUpServerless()
     const plugin = new AWSNestedStacks(serverless, options)
     const bucketName = 'GroovyBucket'
     plugin.bucketName = bucketName
-    plugin.setBucketName()
+    await plugin.setBucketName()
     t.is(plugin.bucketName, bucketName)
 })
 
@@ -37,6 +63,5 @@ test('Bucket name is set from provider when deploymentBucket is set', async t =>
     serverless.service.provider.deploymentBucket = bucketName
     const plugin = new AWSNestedStacks(serverless, options)
     await plugin.setBucketName()
-    t.log(plugin.bucketName)
     t.is(plugin.bucketName, bucketName)
 })
