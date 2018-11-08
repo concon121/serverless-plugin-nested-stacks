@@ -20,28 +20,26 @@
         "bluebird": "^3.0.6"
     },
     "devDependencies": {
+        "ava": "^0.25.0",
+        "codecov": "^3.1.0",
         "eslint": "^3.19.0",
         "eslint-config-standard": "^10.2.0",
         "eslint-plugin-import": "^2.2.0",
         "eslint-plugin-node": "^4.2.2",
         "eslint-plugin-promise": "^3.5.0",
         "eslint-plugin-standard": "^3.0.1",
-        "jshint": "^2.9.4"
+        "istanbul": "^1.0.0-alpha.2",
+        "jasmine": "^2.5.2",
+        "jshint": "^2.9.4",
+        "nyc": "^13.1.0",
+        "serverless": "^1.32.0"
     },
     "scripts": {
+        "test": "ava",
+        "cover": "nyc npm test",
+        "publish-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "jshint": "node ./node_modules/jshint/bin/jshint *.js",
-        "es": "node ./node_modules/eslint/bin/eslint *.js",
-        "quality": "npm run jshint && npm run es"
-    },
-    "standard": {
-        "globals": [
-            "beforeEach",
-            "describe",
-            "expect",
-            "it",
-            "module",
-            "require",
-            "spyOn"
-        ]
+        "eslint": "node ./node_modules/eslint/bin/eslint *.js",
+        "quality": "npm run jshint && npm run eslint"
     }
 }
