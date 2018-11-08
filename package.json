@@ -1,7 +1,7 @@
 {
     "name": "serverless-aws-nested-stacks",
     "main": "index",
-    "version": "0.1.0",
+    "version": "0.1.1",
     "description": "Serverless plugin to easily set up AWS cloudformation nested stacks!",
     "keywords": [
         "serverless",
@@ -31,8 +31,7 @@
         "istanbul": "^1.0.0-alpha.2",
         "jasmine": "^2.5.2",
         "jshint": "^2.9.4",
-        "nyc": "^13.1.0",
-        "serverless": "^1.32.0"
+        "nyc": "^13.1.0"
     },
     "scripts": {
         "test": "ava",
