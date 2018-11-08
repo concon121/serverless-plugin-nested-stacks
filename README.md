@@ -1,7 +1,7 @@
 # serverless-plugin-nested-stacks
 [![serverless](http://public.serverless.com/badges/v3.svg)](http://www.serverless.com)
 [![npm](https://img.shields.io/npm/v/serverless-aws-nested-stacks.svg)](https://www.npmjs.com/package/serverless-aws-nested-stacks)
-[![Build Status](https://travis-ci.com/concon121/serverless-plugin-nested-stacks.svg?branch=master)](https://travis-ci.com/concon121/serverless-plugin-nested-stacks)
+[![Build Status](https://travis-ci.org/concon121/serverless-plugin-nested-stacks.svg?branch=master)](https://travis-ci.org/concon121/serverless-plugin-nested-stacks)
 [![codecov](https://codecov.io/gh/concon121/serverless-plugin-nested-stacks/branch/master/graph/badge.svg)](https://codecov.io/gh/concon121/serverless-plugin-nested-stacks)
 
 
