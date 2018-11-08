@@ -32,7 +32,8 @@
         "istanbul": "^1.0.0-alpha.2",
         "jasmine": "^2.5.2",
         "jshint": "^2.9.4",
-        "nyc": "^13.1.0"
+        "nyc": "^13.1.0",
+        "serverless": "^1.32.0"
     },
     "scripts": {
         "test": "ava",
