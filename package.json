@@ -1,7 +1,7 @@
 {
     "name": "serverless-aws-nested-stacks",
     "main": "index",
-    "version": "0.0.4",
+    "version": "0.1.0",
     "description": "Serverless plugin to easily set up AWS cloudformation nested stacks!",
     "keywords": [
         "serverless",
@@ -17,9 +17,7 @@
     },
     "license": "MIT",
     "dependencies": {
-        "aws-sdk": "^2.149.0",
-        "bluebird": "^3.0.6",
-        "lodash": "^4.17.4"
+        "bluebird": "^3.0.6"
     },
     "devDependencies": {
         "ava": "^0.25.0",
