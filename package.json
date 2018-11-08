@@ -22,7 +22,7 @@
         "lodash": "^4.17.4"
     },
     "devDependencies": {
-        "codeclimate-test-reporter": "^0.4.1",
+        "ava": "^0.25.0",
         "eslint": "^3.19.0",
         "eslint-config-standard": "^10.2.0",
         "eslint-plugin-import": "^2.2.0",
@@ -31,12 +31,13 @@
         "eslint-plugin-standard": "^3.0.1",
         "istanbul": "^1.0.0-alpha.2",
         "jasmine": "^2.5.2",
-        "jasmine-focused": "^1.0.7",
-        "jshint": "^2.9.4"
+        "jshint": "^2.9.4",
+        "nyc": "^13.1.0"
     },
     "scripts": {
-        "test": "node ./node_modules/jasmine-focused/bin/jasmine-focused spec",
-        "coverage": "node ./node_modules/istanbul/lib/cli.js cover -v --include-all-sources node_modules/jasmine-focused/bin/jasmine-focused -R spec",
+        "test": "ava",
+        "cover": "nyc npm test",
+        "publish-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
         "jshint": "node ./node_modules/jshint/bin/jshint *.js",
         "eslint": "node ./node_modules/eslint/bin/eslint *.js",
         "quality": "npm run jshint && npm run eslint"
