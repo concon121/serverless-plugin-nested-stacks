@@ -38,18 +38,7 @@
         "test": "node ./node_modules/jasmine-focused/bin/jasmine-focused spec",
         "coverage": "node ./node_modules/istanbul/lib/cli.js cover -v --include-all-sources node_modules/jasmine-focused/bin/jasmine-focused -R spec",
         "jshint": "node ./node_modules/jshint/bin/jshint *.js",
-        "es": "node ./node_modules/eslint/bin/eslint *.js",
-        "quality": "npm run jshint && npm run es"
-    },
-    "standard": {
-        "globals": [
-            "beforeEach",
-            "describe",
-            "expect",
-            "it",
-            "module",
-            "require",
-            "spyOn"
-        ]
+        "eslint": "node ./node_modules/eslint/bin/eslint *.js",
+        "quality": "npm run jshint && npm run eslint"
     }
 }

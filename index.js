@@ -33,7 +33,7 @@ class AWSNestedStacks {
             baseUrl = 'https://s3.amazonaws.com/' + ref.self.serverless.service.provider.deploymentBucket + `/serverless/${service}/${stage}`
         } else {
             baseUrl = {
-                'Fn::Sub': 'https://s3.amazonaws.com/${ServerlessDeploymentBucket}' + `/serverless/${service}/${stage}`
+                'Fn::Sub': `https://s3.amazonaws.com/\${ServerlessDeploymentBucket}/serverless/${service}/${stage}`
             }
         }
         return baseUrl
@@ -83,9 +83,8 @@ class AWSNestedStacks {
             const resources = ref.self.serverless.service.provider.compiledCloudFormationTemplate.Resources
             for (const stack of stacks) {
                 if (stack && stack.id && stack.template) {
-
                     // if this stack is disabled, skip it
-                    if(stack.enabled === false) {
+                    if (stack.enabled === false) {
                         continue
                     }
 
