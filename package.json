@@ -38,8 +38,8 @@
         "test": "ava",
         "cover": "nyc npm test",
         "publish-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
-        "jshint": "node ./node_modules/jshint/bin/jshint *.js",
-        "eslint": "node ./node_modules/eslint/bin/eslint *.js",
+        "jshint": "node ./node_modules/jshint/bin/jshint index.js",
+        "eslint": "node ./node_modules/eslint/bin/eslint index.js",
         "quality": "npm run jshint && npm run eslint"
     }
 }

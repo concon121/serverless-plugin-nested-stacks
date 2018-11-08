@@ -25,23 +25,23 @@ class AWSNestedStacks {
 
     setBucketName() {
         if (ref.self.bucketName) {
-          return BbPromise.resolve(ref.self.bucketName);
+            return BbPromise.resolve(ref.self.bucketName)
         }
 
         return ref.self.provider.getServerlessDeploymentBucketName()
           .then((bucketName) => {
-            ref.self.bucketName = bucketName;
-          });
+              ref.self.bucketName = bucketName
+          })
     }
 
     getBaseUrl() {
         let baseUrl
-        const directoryName = ref.self.serverless.service.package.artifactDirectoryName;
+        const directoryName = ref.self.serverless.service.package.artifactDirectoryName
         if (ref.self.serverless.service.provider.deploymentBucket) {
-            baseUrl = 'https://s3.amazonaws.com/' + ref.self.serverless.service.provider.deploymentBucket + `/${directoryName}`
+            baseUrl = `https://s3.amazonaws.com/${ref.self.serverless.service.provider.deploymentBucket}/${directoryName}`
         } else {
             baseUrl = {
-                'Fn::Sub': 'https://s3.amazonaws.com/\${ServerlessDeploymentBucket}' + `/${directoryName}`
+                'Fn::Sub': `https://s3.amazonaws.com/\${ServerlessDeploymentBucket}/${directoryName}`
             }
         }
         return baseUrl
@@ -131,7 +131,7 @@ class AWSNestedStacks {
         ref.self.serverlessLog('Uploading nested stacks to S3...')
         const self = this
         const templateFolder = ref.self.serverless.service.custom['nested-stacks'].location || '.'
-        const directoryName = ref.self.serverless.service.package.artifactDirectoryName;
+        const directoryName = ref.self.serverless.service.package.artifactDirectoryName
         const stacks = ref.self.serverless.service.custom['nested-stacks'].stacks
         return BbPromise.map(stacks, stack => {
             ref.self.serverlessLog('Stack: ' + stack.template)
