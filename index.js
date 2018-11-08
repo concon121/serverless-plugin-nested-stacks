@@ -13,7 +13,7 @@ class AWSNestedStacks {
         this.service = serverless.service
         this.serverlessLog = serverless.cli.log.bind(serverless.cli)
         this.options = options
-        this.provider = this.serverless.getProvider('aws')
+        this.provider = serverless.getProvider('aws')
 
         this.hooks = {
             'before:package:finalize': self.createNestedStackCfn,
@@ -27,7 +27,6 @@ class AWSNestedStacks {
         if (ref.self.bucketName) {
             return BbPromise.resolve(ref.self.bucketName)
         }
-
         return ref.self.provider.getServerlessDeploymentBucketName()
           .then((bucketName) => {
               ref.self.bucketName = bucketName
