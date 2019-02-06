@@ -116,6 +116,9 @@ class AWSNestedStacks {
                     if (stack.timeout) {
                         resources[stack.id].Properties.TimeoutInMinutes = stack.timeout
                     }
+                    if (stack.dependson) {
+                        resources[stack.id].DependsOn = stack.dependson
+                    }
                 } else {
                     const msg = ('Missing required properties for nested stack:\n' +
                                  '\tid - Logical ID of the nested stack\n' +
