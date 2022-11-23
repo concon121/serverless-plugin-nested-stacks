@@ -1,7 +1,7 @@
 const test = require('ava')
 const AWSNestedStacks = require('..')
 const Serverless = require('serverless')
-const AwsProvider = require('serverless/lib/plugins/aws/provider/awsProvider')
+const AwsProvider = require('serverless/lib/plugins/aws/provider')
 
 const options = {
     interactive: typeof process.env.CI === 'undefined'
@@ -26,9 +26,9 @@ test('Get template url when baseUrl is a string', t => {
     const serverless = setUpServerless()
     const plugin = new AWSNestedStacks(serverless, options)
 
-    const baseUrl = "https://athing.com/stacks"
+    const baseUrl = 'https://athing.com/stacks'
     const stack = {
-        template: "atemplate.yaml"
+        template: 'atemplate.yaml'
     }
     let templateUrl = plugin.getTemplateUrl(baseUrl, stack)
     t.is(templateUrl, `${baseUrl}/${stack.template}`)
@@ -42,7 +42,7 @@ test('Get template url when baseUrl is an object', t => {
         'Fn::Sub': url
     }
     const stack = {
-        template: "atemplate.yaml"
+        template: 'atemplate.yaml'
     }
     let templateUrl = plugin.getTemplateUrl(baseUrl, stack)
     t.is(templateUrl['Fn::Sub'], `${url}/${stack.template}`)

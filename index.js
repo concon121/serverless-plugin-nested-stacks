@@ -28,9 +28,9 @@ class AWSNestedStacks {
             return BbPromise.resolve(ref.self.bucketName)
         }
         return ref.self.provider.getServerlessDeploymentBucketName()
-          .then((bucketName) => {
-              ref.self.bucketName = bucketName
-          })
+            .then((bucketName) => {
+                ref.self.bucketName = bucketName
+            })
     }
 
     getBaseUrl() {
@@ -73,7 +73,7 @@ class AWSNestedStacks {
         const tags = []
         stack.tags = ref.self.mergeArray(stack.tags)
         for (const property in stack.tags) {
-            if (stack.tags.hasOwnProperty(property)) {
+            if (!!Object.getOwnPropertyDescriptor(stack.tags, property)) {
                 const newTag = {}
                 newTag.Key = property
                 newTag.Value = stack.tags[property]
@@ -97,9 +97,9 @@ class AWSNestedStacks {
 
                     ref.self.serverlessLog('Stack: ' + stack.template)
                     resources[stack.id] = {
-                        'Type': 'AWS::CloudFormation::Stack',
-                        'Properties': {
-                            'TemplateURL': ref.self.getTemplateUrl(ref.self.getBaseUrl(), stack)
+                        Type: 'AWS::CloudFormation::Stack',
+                        Properties: {
+                            TemplateURL: ref.self.getTemplateUrl(ref.self.getBaseUrl(), stack)
                         }
                     }
                     if (stack.notifications) {
@@ -121,8 +121,8 @@ class AWSNestedStacks {
                     }
                 } else {
                     const msg = ('Missing required properties for nested stack:\n' +
-                                 '\tid - Logical ID of the nested stack\n' +
-                                 '\ttemplate - the name of the nested cloudformation templates')
+                                '\tid - Logical ID of the nested stack\n' +
+                                '\ttemplate - the name of the nested cloudformation templates')
                     throw new Error(msg)
                 }
             }
