@@ -61,12 +61,12 @@
     "validthis": false, // true: Tolerate using this in a non-constructor function
 
     // Environments
-    "browser": true, // Web Browser (window, document, etc)
+    "browser": false, // Web Browser (window, document, etc)
     "browserify": false, // Browserify (node.js code in the browser)
     "couch": false, // CouchDB
     "devel": true, // Development/debugging (alert, confirm, etc)
     "dojo": false, // Dojo Toolkit
-    "jasmine": true, // Jasmine
+    "jasmine": false, // Jasmine
     "jquery": false, // jQuery
     "mocha": true, // Mocha
     "mootools": false, // MooTools
