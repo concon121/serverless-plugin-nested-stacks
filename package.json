@@ -13,31 +13,27 @@
         "url": "https://github.com/concon121/serverless-plugin-nested-stacks"
     },
     "engines": {
-        "node": ">=4.0"
+        "node": ">=14.0"
     },
     "license": "MIT",
     "dependencies": {
-        "bluebird": "^3.0.6"
+        "bluebird": "^3.7.0"
     },
     "devDependencies": {
-        "ava": "^0.25.0",
-        "codecov": "^3.1.0",
-        "eslint": "^3.19.0",
-        "eslint-config-standard": "^10.2.0",
-        "eslint-plugin-import": "^2.2.0",
-        "eslint-plugin-node": "^4.2.2",
-        "eslint-plugin-promise": "^3.5.0",
-        "eslint-plugin-standard": "^3.0.1",
-        "istanbul": "^1.0.0-alpha.2",
-        "jasmine": "^2.5.2",
-        "jshint": "^2.9.4",
-        "nyc": "^13.1.0",
-        "serverless": "^1.32.0"
+        "ava": "^5.1.0",
+        "eslint": "^8.28.0",
+        "eslint-config-standard": "^17.0.0",
+        "eslint-plugin-import": "^2.26.0",
+        "eslint-plugin-node": "^11.0.0",
+        "eslint-plugin-promise": "^6.1.0",
+        "jshint": "^2.13.6",
+        "nyc": "^15.1.0",
+        "serverless": "^3.25.0"
     },
     "scripts": {
         "test": "ava --verbose",
         "cover": "nyc npm test",
-        "publish-coverage": "nyc report --reporter=text-lcov > coverage.lcov && codecov",
+        "publish-coverage": "nyc report --reporter=text-lcov > coverage.lcov",
         "jshint": "node ./node_modules/jshint/bin/jshint index.js",
         "eslint": "node ./node_modules/eslint/bin/eslint index.js",
         "quality": "npm run jshint && npm run eslint"
